@@ -630,19 +630,33 @@ export default class ImageView extends Component<PropsType, StateType> {
     };
 
     imageInitialParams: TransitionType[];
+
     glideAlwaysTimer: ?TimeoutID;
+
     listRef: *;
+
     isScrolling: boolean;
+
     footerHeight: number;
+
     initialTouches: TouchType[];
+
     currentTouchesNum: number;
+
     doubleTapTimer: ?TimeoutID;
+
     modalAnimation: *;
+
     modalBackgroundOpacity: *;
+
     headerTranslateValue: *;
+
     footerTranslateValue: *;
+
     imageScaleValue: *;
+
     imageTranslateValue: *;
+
     panResponder: *;
 
     calculateNextTranslate(
@@ -772,7 +786,7 @@ export default class ImageView extends Component<PropsType, StateType> {
         const animatedBackgroundColor = this.modalBackgroundOpacity.interpolate(
             {
                 inputRange: [0, 1],
-                outputRange: [`rgba(${rgb}, 0.9)`, `rgba(${rgb}, 0.2)`],
+                outputRange: [`rgba(${rgb}, 1)`, `rgba(${rgb}, 0.2)`],
             }
         );
 
