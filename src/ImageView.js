@@ -780,7 +780,7 @@ export default class ImageView extends Component<PropsType, StateType> {
             scrollEnabled,
         } = this.state;
 
-        const {/* close, */ prev, next} = this.getControls();
+        const {close, prev, next} = this.getControls();
         const imageInitialScale = this.getInitialScale();
         const headerTranslate = this.headerTranslateValue.getTranslateTransform();
         const footerTranslate = this.footerTranslateValue.getTranslateTransform();
@@ -868,7 +868,7 @@ export default class ImageView extends Component<PropsType, StateType> {
                     >
                         {typeof renderFooter === 'function' &&
                             images[imageIndex] &&
-                            renderFooter(images[imageIndex])}
+                            renderFooter(images[imageIndex], close)}
                     </Animated.View>
                 )}
             </Modal>
