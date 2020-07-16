@@ -71,6 +71,7 @@ type PropsType = {
     isSwipeCloseEnabled: boolean,
     onClose: () => {},
     onImageChange: number => {},
+    renderHeader: ImageType => {},
     renderFooter: ImageType => {},
     controls: {
         close?: ComponentType<ControlType> | boolean,
@@ -765,7 +766,12 @@ export default class ImageView extends Component<PropsType, StateType> {
     };
 
     render(): Node {
-        const {animationType, renderFooter, backgroundColor} = this.props;
+        const {
+            animationType,
+            renderHeader,
+            renderFooter,
+            backgroundColor,
+        } = this.props;
         const {
             images,
             imageIndex,
@@ -774,7 +780,7 @@ export default class ImageView extends Component<PropsType, StateType> {
             scrollEnabled,
         } = this.state;
 
-        const {close, prev, next} = this.getControls();
+        const {/* close, */ prev, next} = this.getControls();
         const imageInitialScale = this.getInitialScale();
         const headerTranslate = this.headerTranslateValue.getTranslateTransform();
         const footerTranslate = this.footerTranslateValue.getTranslateTransform();
@@ -817,10 +823,22 @@ export default class ImageView extends Component<PropsType, StateType> {
                         },
                     ]}
                 >
-                    <SafeAreaView style={{flex: 1}}>
-                        {!!close &&
-                            React.createElement(close, {onPress: this.close})}
-                    </SafeAreaView>
+                    {renderHeader && (
+                        <Animated.View
+                            style={[
+                                styles.header,
+                                {transform: footerTranslate},
+                            ]}
+                            onLayout={event => {
+                                this.headerHeight =
+                                    event.nativeEvent.layout.height;
+                            }}
+                        >
+                            {typeof renderHeader === 'function' &&
+                                images[imageIndex] &&
+                                renderHeader(images[imageIndex])}
+                        </Animated.View>
+                    )}
                 </Animated.View>
                 <FlatList
                     horizontal
