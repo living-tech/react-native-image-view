@@ -825,10 +825,7 @@ export default class ImageView extends Component<PropsType, StateType> {
                 >
                     {renderHeader && (
                         <Animated.View
-                            style={[
-                                styles.header,
-                                {transform: footerTranslate},
-                            ]}
+                            style={[styles.header]}
                             onLayout={event => {
                                 this.headerHeight =
                                     event.nativeEvent.layout.height;

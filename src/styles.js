@@ -1,7 +1,5 @@
 import {StyleSheet} from 'react-native';
 
-const HEADER_HEIGHT = 60;
-
 export default function createStyles({screenWidth, screenHeight}) {
     return StyleSheet.create({
         underlay: {
@@ -20,7 +18,6 @@ export default function createStyles({screenWidth, screenHeight}) {
             top: 0,
             left: 0,
             zIndex: 100,
-            height: HEADER_HEIGHT,
             width: screenWidth,
         },
         imageContainer: {
